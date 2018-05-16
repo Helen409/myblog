@@ -51,7 +51,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">Блог</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Категории</a></li>
+                            <li><a href="#{{--{{route('admin.category.index')}}--}}">Категории</a></li>
                             <li><a href="#">Посты</a></li>
                             <li><a href="#">Теги</a></li>
                         </ul>
