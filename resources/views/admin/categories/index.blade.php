@@ -1,13 +1,13 @@
 @extends ('admin.layouts.my_app_admin')
 @section('content')
 <div class="container">
-	@component('admin.components.my_breadcrumbs')
-	 	@slot ('title') Список категорий @endslot
-	 	@slot ('parent') Главная @endslot
-	 	@slot ('active') Категории @endslot
-	@endcomponent
+	<h2>Список категорий</h2>
+	<ol class="breadcrumb">
+		<li><a href="{{route('admin.index')}}">Главная</a></li>
+		<li class="active">Категории</li>
+	</ol>
 	<hr>
-	<a href="#" class="btn btn-primary pull-right">
+	<a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right">
 		<i class="fa fa-plus-square-o"></i>Создать категорию</a>
 		<table class="table table-striped">
 			<thead>
