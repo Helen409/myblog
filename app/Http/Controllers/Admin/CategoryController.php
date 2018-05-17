@@ -31,9 +31,7 @@ class CategoryController extends Controller
     {
         //
         return view('admin.categories.create',[
-            'category'=>[],
-            'categories'=>Category::with('children')->where('parent_id',0)->get(),
-            'delimiter'=>''
+            'category'=>[]
         ]);
     }
 
@@ -46,6 +44,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        Category::create($request->all());
+        return redirect()->route('admin.admin.category.index');
     }
 
     /**

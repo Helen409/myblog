@@ -22,7 +22,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-4">
-			<a class="btn btn-block btn-default" href="#">Добавить новую категорию</a>
+			<a class="btn btn-block btn-default" href="{{route('admin.admin.category.create')}}">Добавить новую категорию</a>
 			<a class="list-group-item" href="#">
 				<h4 class="list-group-item-heading">Категория первая</h4>
 				<p class="list-group-item-text">Количество категорий:</p>
