@@ -1,31 +1,33 @@
 @extends ('admin.layouts.my_app_admin')
 @section('content')
 <div class="container">
-	<?php $title='Список категорий';
+	<?php $title='Список новостей';
 		  $parent='Главная администратора';
-		  $active='Категории';
+		  $active='Новости';
 	?>
 	@include('admin.components.my_breadcrumbs')
 	
 	<hr>
-	<a href="{{route('admin.admin.category.create')}}" class="btn btn-primary pull-right">
-		<i class="fa fa-plus-square-o"></i>Создать категорию</a>
+	<a href="{{route('admin.admin.article.create')}}" class="btn btn-primary pull-right">
+		<i class="fa fa-plus-square-o"></i>Создать пост</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Наименование</th>
+				<th>Содержание поста</th>
 				<th>Публикация</th>
 				<th class="text-right">Действие</th>
 			</thead>
 			<tbody>
-				@forelse ($categories as $category)
+				@forelse ($articles as $article)
 				<tr>
-					<td>{{$category->name}}</td>
-					<td>{{$category->published}}</td>
+					<td>{{$article->name}}</td>
+					<td>{{$article->description}}</td>
+					<td>{{$article->published}}</td>
 					<td>
-						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.category.destroy',$category)}}" method="post">
+						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.article.destroy',$article)}}" method="post">
 							<input type="hidden" name="_method" value="delete">
 							{{csrf_field()}}
-							<a class="btn btn-default" href="{{route('admin.admin.category.edit',$category)}}">
+							<a class="btn btn-default" href="{{route('admin.admin.article.edit',$article)}}">
 								<i class="fa fa-edit"></i>
 							</a>
 							<button type="submit" class="btn"><i class="fa fa-trash-o"></i> </button>
@@ -43,10 +45,6 @@
 			<tr>
 				<td colspan="3">
 					<ul class="pagination pull-right">
-						{{$categories->links()}}
-					</ul>
-				</td>
-			</tr>
-		</tfoot>
+						{{$articles->links()}}
 </div>	
 @endsection

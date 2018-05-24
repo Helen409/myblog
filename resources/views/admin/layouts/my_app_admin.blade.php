@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Chammy Блог</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -48,13 +48,15 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{route('admin.index')}}">Панель состояния</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">Блог</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('admin.admin.category.index')}}">Категории</a></li>
-                            <li><a href="#">Посты</a></li>
-                            <li><a href="#">Теги</a></li>
+                            <li><a href="{{route('admin.admin.tag.index')}}">Теги</a></li>
+                            <li><a href="{{route('admin.admin.article.index')}}">Посты</a></li>
                         </ul>
+
                     </li>
                 </ul>
 

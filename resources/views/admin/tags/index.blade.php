@@ -1,15 +1,15 @@
 @extends ('admin.layouts.my_app_admin')
 @section('content')
 <div class="container">
-	<?php $title='Список категорий';
+	<?php $title='Список тегов';
 		  $parent='Главная администратора';
-		  $active='Категории';
+		  $active='Теги';
 	?>
 	@include('admin.components.my_breadcrumbs')
 	
 	<hr>
-	<a href="{{route('admin.admin.category.create')}}" class="btn btn-primary pull-right">
-		<i class="fa fa-plus-square-o"></i>Создать категорию</a>
+	<a href="{{route('admin.admin.tag.create')}}" class="btn btn-primary pull-right">
+		<i class="fa fa-plus-square-o"></i>Создать новый тег</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Наименование</th>
@@ -17,20 +17,19 @@
 				<th class="text-right">Действие</th>
 			</thead>
 			<tbody>
-				@forelse ($categories as $category)
+				@forelse ($tags as $tag)
 				<tr>
-					<td>{{$category->name}}</td>
-					<td>{{$category->published}}</td>
+					<td>{{$tag->name}}</td>
+					<td>{{$tag->published}}</td>
 					<td>
-						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.category.destroy',$category)}}" method="post">
+						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.tag.destroy',$tag)}}" method="post">
 							<input type="hidden" name="_method" value="delete">
 							{{csrf_field()}}
-							<a class="btn btn-default" href="{{route('admin.admin.category.edit',$category)}}">
+							<a class="btn btn-default" href="{{route('admin.admin.tag.edit',$tag)}}">
 								<i class="fa fa-edit"></i>
 							</a>
 							<button type="submit" class="btn"><i class="fa fa-trash-o"></i> </button>
 						</form>
-						
 					</td>
 				</tr>
 			@empty
@@ -43,10 +42,6 @@
 			<tr>
 				<td colspan="3">
 					<ul class="pagination pull-right">
-						{{$categories->links()}}
-					</ul>
-				</td>
-			</tr>
-		</tfoot>
+						{{$tags->links()}}
 </div>	
 @endsection

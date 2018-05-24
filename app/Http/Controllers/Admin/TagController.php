@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.categories.index',[
-        'categories'=>Category::paginate(10) //возвращаем из модели список категорий по 10 на страницу (метод paginate)
+         return view('admin.tags.index',[
+        'tags'=>Tag::paginate(10) //возвращаем из модели список категорий по 10 на страницу (метод paginate)
         ]);
     }
 
@@ -30,11 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('admin.categories.create',[
-            'category'=>[],
-            'categories' => Category::with('children')->where('parent_id', '0')->get(),
-            'delimiter'  => ''
-        ]);
+        return view('admin.tags.create',['tag'=>[] ]);
     }
 
     /**
@@ -46,8 +42,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        Category::create($request->all());
-        return redirect()->route('admin.admin.category.index');
+        Tag::create($request->all());
+        return redirect()->route('admin.admin.tag.index');
     }
 
     /**
@@ -67,13 +63,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
         //
-         return view('admin.categories.edit',[
-            'category'=>$category
-        ]);
+        return view('admin.tags.edit',['tag'=>$tag]);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -82,11 +77,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Tag $tag)
     {
         //
-        $category->update($request->except('url'));
-         return redirect()->route('admin.admin.category.index');
+         $tag->update($request->except('url'));
+         return redirect()->route('admin.admin.tag.index');
     }
 
     /**
@@ -95,10 +90,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
         //
-        $category->delete();
-         return redirect()->route('admin.admin.category.index');
+        $tag->delete();
+        return redirect()->route('admin.admin.tag.index');
     }
 }
