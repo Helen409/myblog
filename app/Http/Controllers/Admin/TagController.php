@@ -30,7 +30,9 @@ class TagController extends Controller
     public function create()
     {
         //
-        return view('admin.tags.create',['tag'=>[] ]);
+        return view('admin.tags.create',[
+            'tag'=>[] 
+        ]);
     }
 
     /**
@@ -42,6 +44,10 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+         $this->validate($request, [
+            'name' => 'required|unique:tags|max:255',
+
+        ]);
         Tag::create($request->all());
         return redirect()->route('admin.admin.tag.index');
     }

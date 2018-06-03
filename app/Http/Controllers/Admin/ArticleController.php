@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\Tag;
+use App\Page;
+use App\User;
+use App\Comment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
+use Illuminate\support\Str;
 
 class ArticleController extends Controller
 {
@@ -45,19 +50,23 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
-        //
+        //проверка ввода
+        $this->validate($request, [
+            'name' => 'required|unique:articles|max:255',
+            'description' => 'required',
+        ]);
+
         $article=Article::create($request->all());
 
-      /*  if ($request->input('categories')) :
-            $article->categories()->attach($request->input('categories'));
-
-        endif;*/
 
         if ($request->input('tags')):
-            $tag->tags()->attach($request->input('tags'));
+            $article->tags()->attach($request->input('tags'));
         endif;
+
         return redirect()->route('admin.admin.article.index');
     }
 
@@ -67,9 +76,29 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
         //
+        return view('articleSingle',[
+            'article'=> $article,
+            'category'=>Category::all(),
+            'tags'=>Tag::all(),
+            'comments'=>Comment::all(),
+            'pages'=>Page::all(),
+        ]);
+
+    }
+     public function show_my($category_url, $article_url, Article $article)
+    {
+        //
+        return view('articleSingle',[
+            'article'=> $article,
+            'category'=>Category::all(),
+            'tags'=>Tag::all(),
+            'comments'=>Comment::all(),
+            'pages'=>Page::all(),
+        ]);
+
     }
 
     /**
@@ -84,7 +113,8 @@ class ArticleController extends Controller
         return view('admin.articles.edit',[
             'article'=>$article,
             'categories'=>Category::all(),
-            'tags'=>Tag::all()
+            'tags'=>Tag::all(),
+            'comments'=>Comment::all(),
 
         ]);
     }
@@ -101,13 +131,6 @@ class ArticleController extends Controller
         //
          $article->update($request->except('url'));
         
-        /* $article->categories()->detach();
-
-        if ($request->input('categories')) :
-            $article->categories()->attach($request->input('categories'));
-
-        endif;*/
-
         $article->tags()->detach();
         if ($request->input('tags')) :
             $article->tags()->attach($request->input('tags'));
@@ -126,8 +149,31 @@ class ArticleController extends Controller
     {
         //
         $article->tags()->detach();
+        $article->comments() ->delete();
         $article->delete();
         return redirect()->route('admin.admin.article.index');
+    }
+    public function category_filter($category_id){
+        return view('home',[
+            'articles'=>Article::where('category_id',$category_id)->get(),
+            'categories'=>Category::all(),
+            'tags'=>Tag::all(),
+            'users'=>User::all(),
 
+            'pages'=>Page::all(),
+            'message'=>'',
+        ]);
+    }
+    public function tag_filter($tag_id){
+        $arraytagsid=array_column(db::table('article_tag')->where('tag_id','=',$tag_id)->get(), 'article_id');
+        return view('home',[
+            'articles'=>Article::whereIn('id',$arraytagsid)->get(),
+            'categories'=>Category::all(),
+            'tags'=>Tag::all(),
+            'users'=>User::all(),
+            
+            'pages'=>Page::all(),
+            'message'=>'',
+        ]);
     }
 }

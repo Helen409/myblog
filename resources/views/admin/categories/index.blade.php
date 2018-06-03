@@ -1,6 +1,7 @@
 @extends ('admin.layouts.my_app_admin')
 @section('content')
-<div class="container">
+<div class="container main">
+	@include('admin.layouts.panelka')
 	<?php $title='Список категорий';
 		  $parent='Главная администратора';
 		  $active='Категории';
@@ -9,7 +10,7 @@
 	
 	<hr>
 	<a href="{{route('admin.admin.category.create')}}" class="btn btn-primary pull-right">
-		<i class="fa fa-plus-square-o"></i>Создать категорию</a>
+		<i class="fa fa-plus-square-o"></i>&nbspСоздать категорию</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Наименование</th>

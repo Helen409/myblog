@@ -8,8 +8,8 @@
 		<option value="1">Опубликовано</option>
 	@endif
 </select>
-<label for="">Наименование</label><input type="text" class="form-control" name="name" placeholder="Заголовок категории" value ="{{$category->title or ""}}" required>
+<label for="">Наименование</label><input type="text" class="form-control" name="name" placeholder="Заголовок категории" value ="{{$category->name or ""}}" required>
 <label for="">Описание</label><input type="text" class="form-control" name="description" placeholder="Описание категории" value ="{{$category->description or ""}}" >
-<label for=""> Slug</label><input type="text" class="form-control" name="url" placeholder="Автоматическая генерация" value ="{{$category->slug or ""}}" readonly="">
+<label for=""> Slug</label><input type="text" class="form-control" name="url" placeholder="Автоматическая генерация" value ="{{$category->url or ""}}" readonly="">
 <hr/>
 <input class="btn btn-primary" type="submit" value="Сохранить категорию">

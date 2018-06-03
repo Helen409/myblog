@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'sendmail'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,9 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => env('mail_from_address',''),
+               'name' => env('mail_from_name',''),
+           ],
 
     /*
     |--------------------------------------------------------------------------
@@ -108,5 +110,10 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+    'markdown'=>[
+        'theme'=>'default',
+        'paths'=>[resource_path('views/vendow/mail'),
+        ],
+    ],
 
 ];

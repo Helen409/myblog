@@ -32,8 +32,8 @@ class CategoryController extends Controller
         //
         return view('admin.categories.create',[
             'category'=>[],
-            'categories' => Category::with('children')->where('parent_id', '0')->get(),
-            'delimiter'  => ''
+            /*'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'delimiter'  => ''*/
         ]);
     }
 
@@ -46,6 +46,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|unique:categories|max:255',
+
+        ]);
         Category::create($request->all());
         return redirect()->route('admin.admin.category.index');
     }

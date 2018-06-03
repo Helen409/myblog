@@ -27,4 +27,8 @@ class User extends Authenticatable
     public function setRoleAttribute($value){
         $this->attributes['role']='guest';
     }
+    public function articles()
+        {
+          return $this->belongsToMany('App\Article');
+        }
 }

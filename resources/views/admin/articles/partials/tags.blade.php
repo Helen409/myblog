@@ -1,6 +1,6 @@
 @foreach ($tags as $tag) 
  @if ($tag->published==1) 
-  <option value="{{$tag->id or ""}}" 
+  <option value="{{$tag->id or ''}}" 
  
    @if (isset($article->id)) 
       @foreach ($article->tags as $tag_article) 

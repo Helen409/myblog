@@ -1,6 +1,7 @@
 @extends ('admin.layouts.my_app_admin')
 @section('content')
-<div class="container">
+<div class="container main">
+	@include('admin.layouts.panelka')
 	<?php $title='Список новостей';
 		  $parent='Главная администратора';
 		  $active='Новости';
@@ -9,7 +10,7 @@
 	
 	<hr>
 	<a href="{{route('admin.admin.article.create')}}" class="btn btn-primary pull-right">
-		<i class="fa fa-plus-square-o"></i>Создать пост</a>
+		<i class="fa fa-plus-square-o"></i>&nbspСоздать пост</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Наименование</th>
@@ -21,7 +22,7 @@
 				@forelse ($articles as $article)
 				<tr>
 					<td>{{$article->name}}</td>
-					<td>{{$article->description}}</td>
+					<td>{{$article->description_short}}</td>
 					<td>{{$article->published}}</td>
 					<td>
 						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.article.destroy',$article)}}" method="post">

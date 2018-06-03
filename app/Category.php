@@ -19,9 +19,7 @@ $this->attributes['url']=Str::slug(mb_substr($this->name,0,40)/*."-".\Carbon\Car
    /* public function children() {
       return $this->hasMany(self::class, 'parent_id');
     }*/
-    /*public function articles() {
-      return $this->morphedByMany('App\Article', 'categoryable');
-    }*/
+
     //связь с Article
     public function articles() {
       return $this->hasMany('App\Article');

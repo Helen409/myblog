@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="/public/css/my_style.css" rel="stylesheet">
+    
 
     <style>
         body {
@@ -47,10 +49,10 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{route('admin.index')}}">Панель состояния</a></li>
+                    <li><a href="{{ url('/home') }}">На главную</a></li>
+                    <li><a href="{{route('admin.index')}}">Панель администратора</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">Блог</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">Управление блогом</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('admin.admin.category.index')}}">Категории</a></li>
                             <li><a href="{{route('admin.admin.tag.index')}}">Теги</a></li>
@@ -87,6 +89,8 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+ 
+     <script src="/public/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/public/js/app.js"></script>
 </body>
 </html>

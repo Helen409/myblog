@@ -33,9 +33,8 @@
    value="{{$article->category_id or ""}}"
 
 
-  @isset ($article->id) 
-       @if ($category->id == $article->category_id) 
-          selected="selected" 
-        @endif 
-       @endisset 
- 
+
+
+
+  @foreach ($article->tags as $tag_article) 
+  @endforeach 
