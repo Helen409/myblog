@@ -1,12 +1,12 @@
-@extends ('admin.layouts.my_app_admin')
+@extends ('/admin/layouts.my_app_admin')
 @section('content')
 <div class="container main">
-	@include('admin.layouts.panelka')
+	@include('/admin/layouts.panelka')
 	<?php $title='Список тегов';
 		  $parent='Главная администратора';
 		  $active='Теги';
 	?>
-	@include('admin.components.my_breadcrumbs')
+	@include('/admin/components.my_breadcrumbs')
 	
 	<hr>
 	<a href="{{route('admin.admin.tag.create')}}" class="btn btn-primary pull-right">

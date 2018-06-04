@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home',[
-        'articles'=>Article::all(),
+        'articles'=>Article::orderBy('created_at','desc')->paginate(10),
         'categories'=>Category::all(),
         'tags'=>Tag::all(),
         'users'=>User::all(),

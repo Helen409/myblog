@@ -55,10 +55,10 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //проверка ввода
-        $this->validate($request, [
-            'name' => 'required|unique:articles|max:255',
-            'description' => 'required',
-        ]);
+      //  $this->validate($request, [
+           // 'name' => 'required|unique:articles|max:255',
+           // 'description' => 'required',
+      //  ]);
 
         $article=Article::create($request->all());
 
@@ -155,7 +155,7 @@ class ArticleController extends Controller
     }
     public function category_filter($category_id){
         return view('home',[
-            'articles'=>Article::where('category_id',$category_id)->get(),
+            'articles'=>Article::where('category_id',$category_id)->orderBy('created_at','desc')->paginate(10),
             'categories'=>Category::all(),
             'tags'=>Tag::all(),
             'users'=>User::all(),

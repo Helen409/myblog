@@ -1,4 +1,4 @@
-@extends ('admin.layouts.my_app_admin')
+@extends ('/admin/layouts.my_app_admin')
 @section('content')
 <div class="container main">
 	@include('admin.layouts.panelka')
@@ -6,7 +6,7 @@
 		  $parent='Главная администратора';
 		  $active='Категории';
 	?>
-	@include('admin.components.my_breadcrumbs')
+	@include('/admin/components.my_breadcrumbs')
 	
 	<hr>
 	<a href="{{route('admin.admin.category.create')}}" class="btn btn-primary pull-right">

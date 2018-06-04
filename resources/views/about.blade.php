@@ -3,11 +3,16 @@
 @section('content')
 <div class="container main">
     <div class="row">
-       @if (Auth::guest())
-       @else
-       @include('layouts.panelka')
-       @endif
-    </div>
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">   
+            <div class="panel-heading"><h3>Добро пожаловать в блог Chammy!</h3></div>
+            @if (Auth::guest())
+            @else
+            @include('layouts.panelka')
+            @endif
+            </div>
+        </div>
+      </div>
 
     <div class="row articles-row">
          <div class="col-md-10 col-md-offset-1">

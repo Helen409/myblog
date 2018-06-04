@@ -45,14 +45,18 @@
                     
                 &nbsp </span>
                 @endforeach
+
             <p class="show-date">{{$article->created_at->format('d.m.Y')}}</p>
             
-            <p>{{str_limit($article->description,2000)}}</p>
+            <p>{!!str_limit($article->description,2000)!!}</p>
             
 
             <p>Комментариев к статье:&nbsp{{$article->comments->count()}}
             <hr/>
             @endforeach
+             <ul class="pagination pull-right">
+                        {{$articles->links()}}
+            </ul>
         </div>
         <div class="col-md-4 sidebar">
             <h3>Фильтр</h3>

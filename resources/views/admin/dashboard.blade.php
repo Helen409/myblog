@@ -1,9 +1,9 @@
-@extends('admin.layouts.my_app_admin')
+@extends('/admin/layouts.my_app_admin')
 @section('content')
 
 <div class="container main">
 	<div class="row">
-		@include('admin.layouts.panelka')
+		@include('/admin/layouts.panelka')
 		<div class="col-sm-3">
 			<div class="jumbotron">
 				<p><span class="label label-primary">Категорий {{$count_categories}} </span></p>
@@ -73,7 +73,7 @@
 		<div class="col-sm-4">
 			<a class="btn btn-block btn-default" href="{{route('admin.admin.tag.create')}}">Добавить новый тег</a>
 			@foreach ($tags as $tag)
-			<a class="list-group-item" href="{{route('admin.admin.tag.edit',$category)}}">
+			<a class="list-group-item" href="{{route('admin.admin.tag.edit',$tag)}}">
 				<h4 class="list-group-item-heading">{{$tag->name}} </h4>
 				<!--<p class="list-group-item-text">{{$category->articles()->count()}} </p>-->
 			</a>

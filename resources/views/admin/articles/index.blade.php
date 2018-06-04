@@ -22,7 +22,7 @@
 				@forelse ($articles as $article)
 				<tr>
 					<td>{{$article->name}}</td>
-					<td>{{$article->description_short}}</td>
+					<td>{{$article->description}}</td>
 					<td>{{$article->published}}</td>
 					<td>
 						<form onsubmit="if(confirm('Удалить?')){return true } else{return false}" action ="{{route('admin.admin.article.destroy',$article)}}" method="post">

@@ -7,7 +7,7 @@ use Illuminate\support\Str;
 
 class Article extends Model
 {	//
-	protected $fillable=['name','url', 'description','description_short','image','meta_title','meta_description' ,'published','category_id','created_by','updated_by','parent_id'];
+	protected $fillable=['name','url', 'description','description_short','image','published','category_id','created_by','updated_by'];
 	
     public function setUrlAttribute($value){
 			$this->attributes['url']=Str::slug(mb_substr($this->name,0,40)/*."-".\Carbon\Carbon::now()->format('dmyHi')*/,'-');

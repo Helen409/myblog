@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         //
         return view('admin.categories.index',[
-        'categories'=>Category::paginate(10) //возвращаем из модели список категорий по 10 на страницу (метод paginate)
+        'categories'=>Category::orderBy('created_at','desc')->paginate(10) //возвращаем из модели список категорий по 10 на страницу (метод paginate)
         ]);
     }
 

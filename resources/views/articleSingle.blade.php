@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container main">
     <div class="row">
-    	@include('layouts.panelka');
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">   
+            <div class="panel-heading"><h3>Добро пожаловать в блог Chammy!</h3></div>
+            @if (Auth::guest())
+            @else
+            @include('layouts.panelka')
+            @endif
+            </div>
+        </div>
+    </div>
+    <div class="row articles-row">
         <div class="col-md-10 col-md-offset-1">
            <h1>{{$article->name}} </h1>
     		<p>Создано:&nbsp{{$article->users->name}}</p>
@@ -24,14 +34,15 @@
                 &nbsp </span>
                 @endforeach
             <p>{{$article->created_at->format('d.m.Y')}}</p>
-            <p>{{$article->description}}</p>
+            <p>{!!$article->description!!}</p>
+            
              <p class="list-group-item-text">Комментарии к посту: </p>
-                
                 @foreach ($article->comments as $article_comment)
                 <h3>{{$article_comment->name}}</h3>
                 <p>Создан:&nbsp{{Auth::user($article_comment->created_by)->name}}</p>
                 <p>{{$article_comment->text}}</p>
 
+    @if (Auth::guest()) @else
 				@if (Auth::user()->role=="admin")
                 	<form onsubmit="if(confirm('Удалить комментарий?')){return true } else{return false}" action ="{{route('admin.admin.comment.destroy',$article_comment)}}" method="post">
 						<input type="hidden" name="_method" value="delete">
@@ -39,11 +50,11 @@
 						<button type="submit" class="btn"><i class="fa fa-trash-o"></i>Удалить комментарий</button>
 					</form>
 				@endif
+   @endif      
                 <hr/>
-                @endforeach    
-                 
-                
-
+                @endforeach 
+@if (Auth::guest()) 
+@else 
              <form class="form-horizontal" action="{{route('admin.admin.comment.store')}}" method="post"> 
 				{{ csrf_field() }} 
 
@@ -52,7 +63,7 @@
     		    <input type="hidden" name="article_id" value="{{$article->id}}"> 
   				<input class="btn btn-primary" type="submit" value="Добавить комментарий">
           </form> 
-
+@endif  
 
             <hr/>
         </div>

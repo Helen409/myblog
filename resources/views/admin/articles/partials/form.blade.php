@@ -8,11 +8,12 @@
 		<option value="1">Опубликовано</option>
 	@endif
 </select>
-<label for="">Заголовок поста</label><input type="text" class="form-control" name="name" placeholder="Заголовок поста" value ="{{$article->name or ""}}" required>
+<label for="">Заголовок поста</label>
+<input type="text" class="form-control" name="name" placeholder="Заголовок поста" value ="{{$article->name or ""}}" required>
 <label for="">Полное описание</label>
-<textarea class="form-control" id="description" name="description" >{{$article->description or ""}}</textarea>
+<textarea class="form-control" name="description">{{$article->description or ""}}</textarea>
 <label for="">Краткое описание</label> 
-<textarea class="form-control" id="description_short" name="description_short">{{$article->description_short or ""}}</textarea> 
+<textarea class="form-control" name="description_short">{{$article->description_short or ""}}</textarea>
 <hr/>
 <label for="">Категория</label> 
 <select class="form-control" name="category_id" > 
@@ -28,8 +29,7 @@
 
 
 <hr/>
-<!--<label for="">Мета-заголовок</label><input type="text" class="form-control" name="meta_title" placeholder="Мета-заголовок" value ="{{$article->meta_title or ""}}" required>
-<label for="">Мета-описание</label><input type="text" class="form-control" name="meta_description" placeholder="Мета-описание" value ="{{$article->meta_description or ""}}" required>-->
+
 
 <hr/>
 <input class="btn btn-primary" type="submit" value="Сохранить пост">
